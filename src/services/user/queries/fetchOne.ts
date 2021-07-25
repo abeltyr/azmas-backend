@@ -1,10 +1,17 @@
-import { User } from "../../../types/graphql";
+import { User, QueryUserArgs } from "../../../types/graphql";
+import { Prisma, PrismaClient } from "@prisma/client";
 
-const FetchOne = async (req: any): Promise<Partial<User>> => {
-    // let email = req.req.user.email.toLowerCase();
-    let email = "abeltyr@gmail.com";
-    let fetchedUser;
-    return fetchedUser;
+const FetchOne = async (
+  args: QueryUserArgs,
+  prisma: PrismaClient<
+    Prisma.PrismaClientOptions,
+    never,
+    Prisma.RejectOnNotFound | Prisma.RejectPerOperation
+  >
+): Promise<Partial<User>> => {
+  return await prisma.user.findFirst({
+    where: { id: args.id },
+  });
 };
 
 export default FetchOne;

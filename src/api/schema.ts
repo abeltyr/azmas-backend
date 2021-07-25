@@ -13,8 +13,8 @@ export const Repeatable = /* GraphQL */ `
   }
 
   input FilterInput {
-    offset: Int = 0
-    limit: Int = 25
+    skip: Int = 0
+    take: Int = 25
     orderBy: FilterOrderType = createdAt
     order: FilterOrder = asc
   }

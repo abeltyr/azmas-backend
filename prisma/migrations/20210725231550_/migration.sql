@@ -1,13 +1,3 @@
-CREATE EXTENSION IF NOT EXISTS pgcrypto;
--- CreateEnum
-CREATE TYPE "Gender" AS ENUM ('Male', 'Female');
-
--- CreateEnum
-CREATE TYPE "Category" AS ENUM ('Education', 'Friends', 'Community', 'Business', 'Entertainment');
-
--- CreateEnum
-CREATE TYPE "TablesName" AS ENUM ('User', 'Group', 'Event');
-
 -- CreateTable
 CREATE TABLE "User" (
     "id" UUID NOT NULL DEFAULT gen_random_uuid(),
@@ -16,7 +6,8 @@ CREATE TABLE "User" (
     "email" VARCHAR(255) NOT NULL,
     "userName" VARCHAR(255) NOT NULL,
     "bio" TEXT,
-    "gender" "Gender" NOT NULL DEFAULT E'Male',
+    "gender" VARCHAR(255),
+    "birthDate" TIMESTAMP(3),
     "instagram" VARCHAR(255),
     "twitter" VARCHAR(255),
     "telegram" VARCHAR(255),
@@ -42,7 +33,7 @@ CREATE TABLE "Group" (
     "activated" BOOLEAN NOT NULL DEFAULT false,
     "verified" BOOLEAN NOT NULL DEFAULT false,
     "influncer" BOOLEAN NOT NULL DEFAULT false,
-    "category" "Category" NOT NULL DEFAULT E'Community',
+    "category" VARCHAR(255),
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
     "deleted" BOOLEAN NOT NULL DEFAULT false,
@@ -75,7 +66,7 @@ CREATE TABLE "Event" (
     "description" TEXT,
     "eventStartDate" TIMESTAMP(3) NOT NULL,
     "eventEndDate" TIMESTAMP(3) NOT NULL,
-    "category" "Category" NOT NULL DEFAULT E'Community',
+    "category" VARCHAR(255),
     "location" VARCHAR(255),
     "price" DOUBLE PRECISION NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -120,7 +111,7 @@ CREATE TABLE "Image" (
 CREATE TABLE "ImageRelation" (
     "id" UUID NOT NULL DEFAULT gen_random_uuid(),
     "tableId" UUID NOT NULL,
-    "type" "TablesName" NOT NULL,
+    "type" VARCHAR(255) NOT NULL,
     "order" INTEGER NOT NULL DEFAULT 0,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,

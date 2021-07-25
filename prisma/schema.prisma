@@ -10,25 +10,6 @@ generator client {
   provider = "prisma-client-js"
 }
 
-enum Gender {
-  Male
-  Female
-}
-
-enum Category {
-  Education
-  Friends
-  Community
-  Business
-  Entertainment
-}
-
-enum TablesName {
-  User
-  Group
-  Event
-}
-
 model User {
   id           String        @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   fullName     String?       @db.VarChar(255)
@@ -36,7 +17,8 @@ model User {
   email        String        @unique @db.VarChar(255)
   userName     String        @unique @db.VarChar(255)
   bio          String?       @db.Text
-  gender       Gender        @default(Male)
+  gender       String?       @db.VarChar(255)
+  birthDate    DateTime?
   instagram    String?       @db.VarChar(255)
   twitter      String?       @db.VarChar(255)
   telegram     String?       @db.VarChar(255)
@@ -65,7 +47,7 @@ model Group {
   activated    Boolean       @default(false)
   verified     Boolean       @default(false)
   influncer    Boolean       @default(false)
-  category     Category      @default(Community)
+  category     String?       @db.VarChar(255)
   createdAt    DateTime      @default(now())
   updatedAt    DateTime      @updatedAt
   deleted      Boolean       @default(false)
@@ -100,7 +82,7 @@ model Event {
   //Todo: add the array of image
   eventStartDate DateTime
   eventEndDate   DateTime
-  category       Category  @default(Community)
+  category       String?   @db.VarChar(255)
   location       String?   @db.VarChar(255)
   price          Float
   createdAt      DateTime  @default(now())
@@ -138,12 +120,12 @@ model Image {
 }
 
 model ImageRelation {
-  id         String     @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  tableId    String     @db.Uuid
-  type       TablesName
-  order      Int        @default(0)
-  createdAt  DateTime   @default(now())
-  updatedAt  DateTime   @updatedAt
-  deleted    Boolean    @default(false)
+  id         String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  tableId    String    @db.Uuid
+  type       String    @db.VarChar(255)
+  order      Int       @default(0)
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+  deleted    Boolean   @default(false)
   deleteDate DateTime?
 }

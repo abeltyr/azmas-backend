@@ -1,31 +1,3 @@
-
-// import { Prisma } from '@prisma/client'
-
-// const user = async (_, args, { req, prisma }) => {};
-
-// const users = async (_, args, { req, prisma }) => {};
-
-// const createUser = async (_, args, { req, prisma }) => {
-//   const user = await prisma.user.create({
-//     data: {
-
-//     },
-//   });
-// };
-
-// const updateUser = async (_, args, { req, prisma }) => {};
-
-// const deleteUser = async (_, args, { req, prisma }) => {};
-
-// export default {
-//   Query: { user, users },
-//   Mutation: {
-//     createUser,
-//     updateUser,
-//     deleteUser,
-//   },
-// };
-
 import {
   User,
   MutationCreateUserArgs,
@@ -33,32 +5,32 @@ import {
   Resolver,
   MutationUpdateUserArgs,
   MutationDeleteUserArgs,
+  QueryUserArgs,
 } from "types/graphql";
 import { context } from "../../types/service";
 
-
-const user: Resolver<Partial<User>, {}, context> = async (
+const user: Resolver<Partial<User>, {}, context, QueryUserArgs> = async (
   _,
   args,
-  { req, prisma, utils, services },
+  { req, prisma, utils, services }
 ) => {
-  return await services.User.FetchOne(req);
+  return await services.User.FetchOne(args, prisma);
 };
 
 const currentUser: Resolver<Partial<User>, {}, context> = async (
   _,
   args,
-  { req, prisma, utils, services },
+  { req, prisma, utils, services }
 ) => {
-  return await services.User.FetchOne(req);
+  return await services.User.fetchCurrent(req, prisma);
 };
 
 const users: Resolver<Partial<User>[], {}, context, QueryUsersArgs> = async (
   _,
   args,
-  { req, prisma, utils, services },
+  { req, prisma, utils, services }
 ) => {
-  return await services.User.FetchAll(args);
+  return await services.User.FetchAll(args, prisma);
 };
 
 const createUser: Resolver<
@@ -67,9 +39,8 @@ const createUser: Resolver<
   context,
   MutationCreateUserArgs
 > = async (_, args, { req, prisma, utils, services }) => {
-  return await services.User.Create(args);
+  return await services.User.Create(args, prisma);
 };
-
 
 const updateUser: Resolver<
   Partial<User>,
@@ -77,17 +48,13 @@ const updateUser: Resolver<
   context,
   MutationUpdateUserArgs
 > = async (_, args, { req, prisma, utils, services }) => {
-  return await services.User.Update(args, req);
+  return await services.User.Update(args, req, prisma);
 };
 
-const deleteUser: Resolver<
-  boolean,
-  {},
-  context,
-  MutationDeleteUserArgs
-> = async (_, args, { req, prisma, utils, services }) => {
-  return await services.User.Delete(args, req);
-};
+const deleteUser: Resolver<boolean, {}, context, MutationDeleteUserArgs> =
+  async (_, args, { req, prisma, utils, services }) => {
+    return await services.User.Delete(args, req, prisma);
+  };
 
 export default {
   Query: { user, currentUser, users },

@@ -9,7 +9,7 @@
   "scripts": {
     "build": "tsc",
     "start": "yarn build && node dist/index.js",
-    "dev": "clear && concurrently \" yarn generate --watch\" \"ts-node-dev --respawn src/index.ts\"",
+    "dev": "clear && concurrently  \"ts-node-dev --respawn src/index.ts\"",
     "generate": "graphql-codegen"
   },
   "husky": {

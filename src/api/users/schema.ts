@@ -2,7 +2,7 @@ const User = /* GraphQL */ `
   scalar Uploads
 
   type Query {
-    user: User
+    user(id: ID!): User
     currentUser: User
     users(filter: FilterInput!): [User!]!
   }
@@ -15,23 +15,80 @@ const User = /* GraphQL */ `
 
   type User {
     id: ID!
-    fullName: String
+    fullName: String!
+    phoneNumber: String!
+    email: String!
+    userName: String!
+    bio: String 
+    birthDate: DateTime
+    gender: String!  
+    instagram: String
+    twitter : String
+    telegram: String
+    facebook: String
+    verified: Boolean
+    activated: Boolean
+    # Groups  Group[]
+    # GroupMembers GroupMember[]
+    # events  Event[]
+    # tickets Ticket[]
     createdAt: DateTime
     updatedAt: DateTime
   }
 
   input CreateUserInput {
     fullName: String!
+    phoneNumber: String!
+    email: String!
+    userName: String!
+    birthDate: DateTime
+    bio: String 
+    gender: String
+    instagram: String
+    twitter: String
+    telegram: String
+    facebook: String
   }
 
   input UpdateUserInput {
-    fullName: String
+    fullName: String!
+    phoneNumber: String!
+    email: String!
+    birthDate: DateTime
+    userName: String!
+    bio: String 
+    gender: String  
+    instagram: String
+    twitter: String
+    telegram: String
+    facebook: String
   }
 
   schema {
     query: Query
     mutation: Mutation
   }
+
+enum Gender {
+  Male
+  Female
+}
+
+enum Category {
+  Education
+  Friends
+  Community
+  Business
+  Entertainment
+}
+
+enum TablesName {
+  User
+  Group
+  Event
+}
+
+
 `;
 
 export default User;
