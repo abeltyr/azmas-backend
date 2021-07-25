@@ -10,12 +10,140 @@ generator client {
   provider = "prisma-client-js"
 }
 
+enum Gender {
+  Male
+  Female
+}
+
+enum Category {
+  Education
+  Friends
+  Community
+  Business
+  Entertainment
+}
+
+enum TablesName {
+  User
+  Group
+  Event
+}
+
 model User {
-  id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  title     String   @db.VarChar(255)
-  content   String?
-  published Boolean  @default(false)
-  authorId  Int
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id           String        @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  fullName     String?       @db.VarChar(255)
+  phoneNumber  String        @unique @db.VarChar(255)
+  email        String        @unique @db.VarChar(255)
+  userName     String        @unique @db.VarChar(255)
+  bio          String?       @db.Text
+  gender       Gender        @default(Male)
+  instagram    String?       @db.VarChar(255)
+  twitter      String?       @db.VarChar(255)
+  telegram     String?       @db.VarChar(255)
+  facebook     String?       @db.VarChar(255)
+  verified     Boolean       @default(false)
+  activated    Boolean       @default(false)
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  deleted      Boolean       @default(false)
+  deleteDate   DateTime?
+  Groups       Group[]
+  GroupMembers GroupMember[]
+  events       Event[]
+  tickets      Ticket[]
+}
+
+model Group {
+  id           String        @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  groupName    String        @unique @db.VarChar(255)
+  user         User          @relation(fields: [ownerId], references: [id])
+  ownerId      String        @db.Uuid
+  title        String?       @db.VarChar(255)
+  description  String?       @db.Text
+  //Todo: add the avatar and background
+  public       Boolean       @default(true)
+  activated    Boolean       @default(false)
+  verified     Boolean       @default(false)
+  influncer    Boolean       @default(false)
+  category     Category      @default(Community)
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  deleted      Boolean       @default(false)
+  deleteDate   DateTime?
+  GroupMembers GroupMember[]
+  events       Event[]
+  tickets      Ticket[]
+}
+
+model GroupMember {
+  id         String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  user       User      @relation(fields: [userId], references: [id])
+  userId     String    @db.Uuid
+  group      Group     @relation(fields: [groupId], references: [id])
+  groupId    String    @db.Uuid
+  admin      Boolean   @default(true)
+  banned     Boolean   @default(false)
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+  deleted    Boolean   @default(false)
+  deleteDate DateTime?
+}
+
+model Event {
+  id             String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  user           User      @relation(fields: [creatorId], references: [id])
+  creatorId      String    @db.Uuid
+  group          Group     @relation(fields: [groupId], references: [id])
+  groupId        String    @db.Uuid
+  title          String?   @db.VarChar(255)
+  description    String?   @db.Text
+  //Todo: add the array of image
+  eventStartDate DateTime
+  eventEndDate   DateTime
+  category       Category  @default(Community)
+  location       String?   @db.VarChar(255)
+  price          Float
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+  deleted        Boolean   @default(false)
+  deleteDate     DateTime?
+  tickets        Ticket[]
+}
+
+model Ticket {
+  id         String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  user       User      @relation(fields: [userId], references: [id])
+  userId     String    @db.Uuid
+  group      Group     @relation(fields: [groupId], references: [id])
+  groupId    String    @db.Uuid
+  event      Event     @relation(fields: [eventId], references: [id])
+  eventId    String    @db.Uuid
+  price      Float
+  used       Boolean   @default(false)
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+  deleted    Boolean   @default(false)
+  deleteDate DateTime?
+}
+
+model Image {
+  id         String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  url        String    @db.VarChar(255)
+  name       String    @db.VarChar(255)
+  size       Int
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+  deleted    Boolean   @default(false)
+  deleteDate DateTime?
+}
+
+model ImageRelation {
+  id         String     @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  tableId    String     @db.Uuid
+  type       TablesName
+  order      Int        @default(0)
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+  deleted    Boolean    @default(false)
+  deleteDate DateTime?
 }
