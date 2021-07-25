@@ -3,6 +3,7 @@ const User = /* GraphQL */ `
 
   type Query {
     user: User
+    currentUser: User
     users(filter: FilterInput!): [User!]!
   }
 
