@@ -1,6 +1,4 @@
 const User = /* GraphQL */ `
-  scalar Uploads
-
   type Query {
     user(id: ID!): User
     currentUser: User
@@ -19,11 +17,11 @@ const User = /* GraphQL */ `
     phoneNumber: String!
     email: String!
     userName: String!
-    bio: String 
+    bio: String
     birthDate: DateTime
-    gender: String!  
+    gender: String!
     instagram: String
-    twitter : String
+    twitter: String
     telegram: String
     facebook: String
     verified: Boolean
@@ -42,7 +40,7 @@ const User = /* GraphQL */ `
     email: String!
     userName: String!
     birthDate: DateTime
-    bio: String 
+    bio: String
     gender: String
     instagram: String
     twitter: String
@@ -56,8 +54,8 @@ const User = /* GraphQL */ `
     email: String!
     birthDate: DateTime
     userName: String!
-    bio: String 
-    gender: String  
+    bio: String
+    gender: String
     instagram: String
     twitter: String
     telegram: String
@@ -69,26 +67,24 @@ const User = /* GraphQL */ `
     mutation: Mutation
   }
 
-enum Gender {
-  Male
-  Female
-}
+  enum Gender {
+    Male
+    Female
+  }
 
-enum Category {
-  Education
-  Friends
-  Community
-  Business
-  Entertainment
-}
+  enum Category {
+    Education
+    Friends
+    Community
+    Business
+    Entertainment
+  }
 
-enum TablesName {
-  User
-  Group
-  Event
-}
-
-
+  enum TablesName {
+    User
+    Group
+    Event
+  }
 `;
 
 export default User;

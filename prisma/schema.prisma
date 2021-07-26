@@ -46,7 +46,7 @@ model Group {
   public       Boolean       @default(true)
   activated    Boolean       @default(false)
   verified     Boolean       @default(false)
-  influncer    Boolean       @default(false)
+  influencer   Boolean       @default(false)
   category     String?       @db.VarChar(255)
   createdAt    DateTime      @default(now())
   updatedAt    DateTime      @updatedAt

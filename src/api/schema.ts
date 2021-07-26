@@ -2,6 +2,7 @@ export const Repeatable = /* GraphQL */ `
   scalar JSON
   scalar DateTime
   scalar Upload
+  scalar Uploads
 
   type Avatar {
     id: ID!

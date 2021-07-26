@@ -32,7 +32,7 @@ CREATE TABLE "Group" (
     "public" BOOLEAN NOT NULL DEFAULT true,
     "activated" BOOLEAN NOT NULL DEFAULT false,
     "verified" BOOLEAN NOT NULL DEFAULT false,
-    "influncer" BOOLEAN NOT NULL DEFAULT false,
+    "influencer" BOOLEAN NOT NULL DEFAULT false,
     "category" VARCHAR(255),
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
