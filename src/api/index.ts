@@ -13,12 +13,23 @@ import UserResolver from "./user/resolver";
 import Group from "./group/schema";
 import GroupResolver from "./group/resolver";
 
+import GroupMember from "./groupMember/schema";
+import GroupMemberResolver from "./groupMember/resolver";
+
 const prisma = new PrismaClient();
 const schema = makeExecutableSchema({
-  typeDefs: [Repeatable, User, Group],
+  typeDefs: [Repeatable, User, Group, GroupMember],
   resolvers: {
-    Query: { ...UserResolver.Query, ...GroupResolver.Query },
-    Mutation: { ...UserResolver.Mutation, ...GroupResolver.Mutation },
+    Query: {
+      ...UserResolver.Query,
+      ...GroupResolver.Query,
+      ...GroupMemberResolver.Query,
+    },
+    Mutation: {
+      ...UserResolver.Mutation,
+      ...GroupResolver.Mutation,
+      ...GroupMemberResolver.Mutation,
+    },
     JSON: GraphQLJSON,
     DateTime: GraphQLDateTime,
     Upload: GraphQLUpload,
