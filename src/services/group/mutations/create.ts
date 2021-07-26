@@ -3,11 +3,7 @@ import { Group, MutationCreateGroupArgs } from "../../../types/graphql";
 
 const Create = async (
   args: MutationCreateGroupArgs,
-  prisma: PrismaClient<
-    Prisma.PrismaClientOptions,
-    never,
-    Prisma.RejectOnNotFound | Prisma.RejectPerOperation
-  >
+  prisma: PrismaClient
 ): Promise<Partial<Group>> => {
   const create = await prisma.group.create({
     data: {

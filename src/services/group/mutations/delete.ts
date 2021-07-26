@@ -4,11 +4,7 @@ import { MutationDeleteGroupArgs } from "../../../types/graphql";
 const Delete = async (
   args: MutationDeleteGroupArgs,
   req: any,
-  prisma: PrismaClient<
-    Prisma.PrismaClientOptions,
-    never,
-    Prisma.RejectOnNotFound | Prisma.RejectPerOperation
-  >
+  prisma: PrismaClient
 ): Promise<boolean> => {
   try {
     let group = await prisma.group.findFirst({

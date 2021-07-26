@@ -5,11 +5,7 @@ import { Prisma, PrismaClient } from "@prisma/client";
 
 export type context = {
   req: Request;
-  prisma: PrismaClient<
-    Prisma.PrismaClientOptions,
-    never,
-    Prisma.RejectOnNotFound | Prisma.RejectPerOperation
-  >;
+  prisma: PrismaClient;
   utils: typeof utils;
   services: typeof services;
 };

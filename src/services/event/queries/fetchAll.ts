@@ -3,11 +3,7 @@ import { Prisma, PrismaClient } from "@prisma/client";
 
 const FetchAll = async (
   args: QueryEventsArgs,
-  prisma: PrismaClient<
-    Prisma.PrismaClientOptions,
-    never,
-    Prisma.RejectOnNotFound | Prisma.RejectPerOperation
-  >
+  prisma: PrismaClient
 ): Promise<Partial<Event>[]> => {
   return await prisma.event.findMany({
     skip: args.filter.skip,

@@ -1,11 +1,11 @@
-import { Event, QueryEventArgs } from "../../../types/graphql";
+import { Ticket, QueryTicketArgs } from "../../../types/graphql";
 import { Prisma, PrismaClient } from "@prisma/client";
 
 const FetchOne = async (
-  args: QueryEventArgs,
+  args: QueryTicketArgs,
   prisma: PrismaClient
-): Promise<Partial<Event>> => {
-  return await prisma.event.findFirst({
+): Promise<Partial<Ticket>> => {
+  return await prisma.ticket.findFirst({
     where: { id: args.id },
   });
 };

@@ -6,11 +6,7 @@ import {
 
 const Create = async (
   args: MutationCreateGroupMemberArgs,
-  prisma: PrismaClient<
-    Prisma.PrismaClientOptions,
-    never,
-    Prisma.RejectOnNotFound | Prisma.RejectPerOperation
-  >
+  prisma: PrismaClient
 ): Promise<Partial<GroupMember>> => {
   const groupMember = await prisma.groupMember.findFirst({
     where: {

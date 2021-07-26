@@ -1,13 +1,16 @@
-import { Group, QueryGroupsArgs } from "../../../types/graphql";
+import { Ticket, QueryTicketsArgs } from "../../../types/graphql";
 import { Prisma, PrismaClient } from "@prisma/client";
 
 const FetchAll = async (
-  args: QueryGroupsArgs,
+  args: QueryTicketsArgs,
   prisma: PrismaClient
-): Promise<Partial<Group>[]> => {
-  return await prisma.group.findMany({
+): Promise<Partial<Ticket>[]> => {
+  return await prisma.ticket.findMany({
     skip: args.filter.skip,
     take: args.filter.take,
+    where: {
+      eventId: args.eventId,
+    },
     orderBy: {
       createdAt: args.filter.order,
     },

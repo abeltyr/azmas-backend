@@ -3,11 +3,7 @@ import { Prisma, PrismaClient } from "@prisma/client";
 
 const FetchOne = async (
   args: QueryUserArgs,
-  prisma: PrismaClient<
-    Prisma.PrismaClientOptions,
-    never,
-    Prisma.RejectOnNotFound | Prisma.RejectPerOperation
-  >
+  prisma: PrismaClient
 ): Promise<Partial<User>> => {
   return await prisma.user.findFirst({
     where: { id: args.id },

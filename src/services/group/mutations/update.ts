@@ -7,11 +7,7 @@ import {
 const Update = async (
   args: MutationUpdateGroupArgs,
   req: any,
-  prisma: PrismaClient<
-    Prisma.PrismaClientOptions,
-    never,
-    Prisma.RejectOnNotFound | Prisma.RejectPerOperation
-  >
+  prisma: PrismaClient
 ): Promise<ResolversTypes["Group"]> => {
   let update = await prisma.group.update({
     where: { id: args.id },

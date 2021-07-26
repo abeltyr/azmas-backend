@@ -1,15 +1,15 @@
-import { Prisma, PrismaClient } from "@prisma/client";
+import { PrismaClient } from "@prisma/client";
 import {
-  MutationUpdateEventArgs,
+  MutationUpdateTicketArgs,
   ResolversTypes,
 } from "../../../types/graphql";
 
 const Update = async (
-  args: MutationUpdateEventArgs,
+  args: MutationUpdateTicketArgs,
   req: any,
   prisma: PrismaClient
-): Promise<ResolversTypes["Event"]> => {
-  let update = await prisma.event.update({
+): Promise<ResolversTypes["Ticket"]> => {
+  let update = await prisma.ticket.update({
     where: { id: args.id },
     data: {
       ...args.data,

@@ -3,11 +3,7 @@ import { Prisma, PrismaClient } from "@prisma/client";
 
 const FetchAll = async (
   args: QueryUsersArgs,
-  prisma: PrismaClient<
-    Prisma.PrismaClientOptions,
-    never,
-    Prisma.RejectOnNotFound | Prisma.RejectPerOperation
-  >
+  prisma: PrismaClient
 ): Promise<Partial<User>[]> => {
   return await prisma.user.findMany({
     skip: args.filter.skip,

@@ -19,21 +19,26 @@ import GroupMemberResolver from "./groupMember/resolver";
 import Event from "./event/schema";
 import EventResolver from "./event/resolver";
 
+import Ticket from "./ticket/schema";
+import TicketResolver from "./ticket/resolver";
+
 const prisma = new PrismaClient();
 const schema = makeExecutableSchema({
-  typeDefs: [Repeatable, User, Group, GroupMember, Event],
+  typeDefs: [Repeatable, User, Group, GroupMember, Event, Ticket],
   resolvers: {
     Query: {
       ...UserResolver.Query,
       ...GroupResolver.Query,
       ...GroupMemberResolver.Query,
       ...EventResolver.Query,
+      ...TicketResolver.Query,
     },
     Mutation: {
       ...UserResolver.Mutation,
       ...GroupResolver.Mutation,
       ...GroupMemberResolver.Mutation,
       ...EventResolver.Mutation,
+      ...TicketResolver.Mutation,
     },
     JSON: GraphQLJSON,
     DateTime: GraphQLDateTime,

@@ -23,7 +23,7 @@ const Event = /* GraphQL */ `
     eventEndDate: DateTime
     category: String
     location: String
-    price: Int
+    price: Float
     # tickets        Ticket[]
     createdAt: DateTime
     updatedAt: DateTime

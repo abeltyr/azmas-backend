@@ -1,13 +1,13 @@
-import { Prisma, PrismaClient } from "@prisma/client";
-import { MutationDeleteEventArgs } from "../../../types/graphql";
+import { PrismaClient } from "@prisma/client";
+import { MutationDeleteTicketArgs } from "../../../types/graphql";
 
 const Delete = async (
-  args: MutationDeleteEventArgs,
+  args: MutationDeleteTicketArgs,
   req: any,
   prisma: PrismaClient
 ): Promise<boolean> => {
   try {
-    let event = await prisma.event.findFirst({
+    let event = await prisma.ticket.findFirst({
       where: { id: args.id },
     });
     if (null === event) return false;
