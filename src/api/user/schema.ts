@@ -2,7 +2,7 @@ const User = /* GraphQL */ `
   type Query {
     user(id: ID!): User
     currentUser: User
-    users(filter: FilterInput!): [User!]!
+    users(filter: FilterInput!): [User!]
   }
 
   type Mutation {

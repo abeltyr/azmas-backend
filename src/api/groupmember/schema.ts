@@ -1,7 +1,7 @@
 const GroupMember = /* GraphQL */ `
   extend type Query {
     groupMember(id: ID!): GroupMember
-    groupMembers(filter: FilterInput!, groupId: ID!): [GroupMember!]!
+    groupMembers(filter: FilterInput!, groupId: ID!): [GroupMember!]
   }
 
   extend type Mutation {

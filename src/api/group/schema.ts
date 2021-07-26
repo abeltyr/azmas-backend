@@ -1,7 +1,7 @@
 const Group = /* GraphQL */ `
   extend type Query {
     group(id: ID!): Group
-    groups(filter: FilterInput!): [Group!]!
+    groups(filter: FilterInput!): [Group!]
   }
 
   extend type Mutation {
