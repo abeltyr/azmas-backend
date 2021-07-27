@@ -22,9 +22,12 @@ import EventResolver from "./event/resolver";
 import Ticket from "./ticket/schema";
 import TicketResolver from "./ticket/resolver";
 
+import File from "./file/schema";
+import FileResolver from "./file/resolver";
+
 const prisma = new PrismaClient();
 const schema = makeExecutableSchema({
-  typeDefs: [Repeatable, User, Group, GroupMember, Event, Ticket],
+  typeDefs: [Repeatable, User, Group, GroupMember, Event, Ticket, File],
   resolvers: {
     Query: {
       ...UserResolver.Query,
@@ -32,6 +35,7 @@ const schema = makeExecutableSchema({
       ...GroupMemberResolver.Query,
       ...EventResolver.Query,
       ...TicketResolver.Query,
+      ...FileResolver.Query,
     },
     Mutation: {
       ...UserResolver.Mutation,
@@ -39,6 +43,7 @@ const schema = makeExecutableSchema({
       ...GroupMemberResolver.Mutation,
       ...EventResolver.Mutation,
       ...TicketResolver.Mutation,
+      ...FileResolver.Mutation,
     },
     JSON: GraphQLJSON,
     DateTime: GraphQLDateTime,

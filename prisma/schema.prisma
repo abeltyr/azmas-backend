@@ -108,21 +108,26 @@ model Ticket {
   deleteDate DateTime?
 }
 
-model Image {
-  id         String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  url        String    @db.VarChar(255)
-  name       String    @db.VarChar(255)
-  size       Int
-  createdAt  DateTime  @default(now())
-  updatedAt  DateTime  @updatedAt
-  deleted    Boolean   @default(false)
-  deleteDate DateTime?
+model UploadFile {
+  id              String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name            String    @db.VarChar(255)
+  alternativeName String?   @db.VarChar(255)
+  ext             String?   @db.VarChar(255)
+  url             String    @db.VarChar(255)
+  previewUrl      String?   @db.VarChar(255)
+  size            Int
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  deleted         Boolean   @default(false)
+  deleteDate      DateTime?
 }
 
-model ImageRelation {
+model UploadFileRelation {
   id         String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   tableId    String    @db.Uuid
-  type       String    @db.VarChar(255)
+  fileId     String    @db.Uuid
+  tableType  String    @db.VarChar(255)
+  Field      String    @db.VarChar(255)
   order      Int       @default(0)
   createdAt  DateTime  @default(now())
   updatedAt  DateTime  @updatedAt
