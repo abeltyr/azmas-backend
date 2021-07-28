@@ -1,11 +1,11 @@
 import { Prisma, PrismaClient } from "@prisma/client";
 import {
   GroupMember,
-  MutationCreateGroupMemberArgs,
+  MutationAddGroupMemberArgs,
 } from "../../../types/graphql";
 
 const Create = async (
-  args: MutationCreateGroupMemberArgs,
+  args: MutationAddGroupMemberArgs,
   prisma: PrismaClient
 ): Promise<Partial<GroupMember>> => {
   const groupMember = await prisma.groupMember.findFirst({

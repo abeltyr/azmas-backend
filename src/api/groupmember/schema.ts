@@ -5,9 +5,9 @@ const GroupMember = /* GraphQL */ `
   }
 
   extend type Mutation {
-    createGroupMember(data: CreateGroupMemberInput): GroupMember!
+    addGroupMember(data: CreateGroupMemberInput): GroupMember!
     updateGroupMember(data: UpdateGroupMemberInput, id: ID!): GroupMember!
-    deleteGroupMember(id: ID!): Boolean!
+    removeGroupMember(id: ID!): Boolean!
   }
 
   type GroupMember {

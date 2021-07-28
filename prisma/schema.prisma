@@ -63,7 +63,7 @@ model GroupMember {
   userId     String    @db.Uuid
   group      Group     @relation(fields: [groupId], references: [id])
   groupId    String    @db.Uuid
-  admin      Boolean   @default(true)
+  admin      Boolean   @default(false)
   banned     Boolean   @default(false)
   createdAt  DateTime  @default(now())
   updatedAt  DateTime  @updatedAt
@@ -79,6 +79,7 @@ model Event {
   groupId        String    @db.Uuid
   title          String?   @db.VarChar(255)
   description    String?   @db.Text
+  horizontal     Boolean   @default(true)
   //Todo: add the array of image
   eventStartDate DateTime
   eventEndDate   DateTime

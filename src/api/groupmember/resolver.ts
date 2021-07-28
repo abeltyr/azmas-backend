@@ -1,10 +1,10 @@
 import {
   GroupMember,
-  MutationCreateGroupMemberArgs,
+  MutationAddGroupMemberArgs,
   QueryGroupMembersArgs,
   Resolver,
   MutationUpdateGroupMemberArgs,
-  MutationDeleteGroupMemberArgs,
+  MutationRemoveGroupMemberArgs,
   QueryGroupMemberArgs,
 } from "types/graphql";
 import { context } from "../../types/service";
@@ -27,11 +27,11 @@ const groupMembers: Resolver<
   return await services.GroupMember.FetchAll(args, prisma);
 };
 
-const createGroupMember: Resolver<
+const addGroupMember: Resolver<
   Partial<GroupMember>,
   {},
   context,
-  MutationCreateGroupMemberArgs
+  MutationAddGroupMemberArgs
 > = async (_, args, { req, prisma, utils, services }) => {
   return await services.GroupMember.Create(args, prisma);
 };
@@ -45,11 +45,11 @@ const updateGroupMember: Resolver<
   return await services.GroupMember.Update(args, req, prisma);
 };
 
-const deleteGroupMember: Resolver<
+const removeGroupMember: Resolver<
   boolean,
   {},
   context,
-  MutationDeleteGroupMemberArgs
+  MutationRemoveGroupMemberArgs
 > = async (_, args, { req, prisma, utils, services }) => {
   return await services.GroupMember.Delete(args, req, prisma);
 };
@@ -57,8 +57,8 @@ const deleteGroupMember: Resolver<
 export default {
   Query: { groupMember, groupMembers },
   Mutation: {
-    createGroupMember,
-    deleteGroupMember,
+    addGroupMember,
     updateGroupMember,
+    removeGroupMember,
   },
 };

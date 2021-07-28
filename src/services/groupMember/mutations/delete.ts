@@ -1,8 +1,8 @@
 import { Prisma, PrismaClient } from "@prisma/client";
-import { MutationDeleteGroupMemberArgs } from "../../../types/graphql";
+import { MutationRemoveGroupMemberArgs } from "../../../types/graphql";
 
 const Delete = async (
-  args: MutationDeleteGroupMemberArgs,
+  args: MutationRemoveGroupMemberArgs,
   req: any,
   prisma: PrismaClient
 ): Promise<boolean> => {

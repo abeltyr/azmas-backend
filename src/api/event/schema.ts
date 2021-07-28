@@ -24,6 +24,7 @@ const Event = /* GraphQL */ `
     category: String
     location: String
     price: Float
+    horizontal: Boolean
     # tickets        Ticket[]
     createdAt: DateTime
     updatedAt: DateTime
