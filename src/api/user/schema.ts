@@ -39,7 +39,7 @@ const User = /* GraphQL */ `
     phoneNumber: String!
     email: String!
     userName: String!
-    birthDate: DateTime
+    birthDate: String
     bio: String
     gender: String
     instagram: String
@@ -52,7 +52,7 @@ const User = /* GraphQL */ `
     fullName: String!
     phoneNumber: String!
     email: String!
-    birthDate: DateTime
+    birthDate: String
     userName: String!
     bio: String
     gender: String
