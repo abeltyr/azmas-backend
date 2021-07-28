@@ -32,8 +32,7 @@ const singleUpload: Resolver<
   context,
   MutationSingleUploadArgs
 > = async (_, args, { req, prisma, utils, services }) => {
-  console.log("here");
-  return await services.File.singleUpload(args, prisma);
+  return await services.File.singleUpload(args, prisma, utils.uploadData);
 };
 
 const removeUpload: Resolver<boolean, {}, context, MutationRemoveUploadArgs> =
@@ -47,7 +46,7 @@ const multipleUpload: Resolver<
   context,
   MutationMultipleUploadArgs
 > = async (_, args, { req, prisma, utils, services }) => {
-  return await services.File.multipleUpload(args, prisma);
+  return await services.File.multipleUpload(args, prisma, utils.uploadData);
 };
 
 export default {

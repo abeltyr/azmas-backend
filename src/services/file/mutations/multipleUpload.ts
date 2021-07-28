@@ -4,8 +4,8 @@ import { PrismaClient } from "@prisma/client";
 
 const multipleUpload = async (
   args: MutationMultipleUploadArgs,
-  prisma: PrismaClient
-  // uploadData: (fileData: FileUpload, user: User) => Promise<File>
+  prisma: PrismaClient,
+  uploadData: (fileData: [FileUpload], user: User) => Promise<File>
 ): Promise<Partial<File>[]> => {
   // let user = await userModel().findById(args.userId);
   // if (!user) throw new Error();

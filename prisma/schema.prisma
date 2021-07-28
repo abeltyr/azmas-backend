@@ -115,7 +115,8 @@ model UploadFile {
   ext             String?   @db.VarChar(255)
   url             String    @db.VarChar(255)
   previewUrl      String?   @db.VarChar(255)
-  size            Int
+  mime            String?   @db.VarChar(255)
+  size            Float
   createdAt       DateTime  @default(now())
   updatedAt       DateTime  @updatedAt
   deleted         Boolean   @default(false)
