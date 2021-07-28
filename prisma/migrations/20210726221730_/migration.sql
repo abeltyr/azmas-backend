@@ -94,10 +94,13 @@ CREATE TABLE "Ticket" (
 );
 
 -- CreateTable
-CREATE TABLE "Image" (
+CREATE TABLE "UploadFile" (
     "id" UUID NOT NULL DEFAULT gen_random_uuid(),
-    "url" VARCHAR(255) NOT NULL,
     "name" VARCHAR(255) NOT NULL,
+    "alternativeName" VARCHAR(255),
+    "ext" VARCHAR(255),
+    "url" VARCHAR(255) NOT NULL,
+    "previewUrl" VARCHAR(255),
     "size" INTEGER NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
@@ -108,10 +111,12 @@ CREATE TABLE "Image" (
 );
 
 -- CreateTable
-CREATE TABLE "ImageRelation" (
+CREATE TABLE "UploadFileRelation" (
     "id" UUID NOT NULL DEFAULT gen_random_uuid(),
     "tableId" UUID NOT NULL,
-    "type" VARCHAR(255) NOT NULL,
+    "fileId" UUID NOT NULL,
+    "tableType" VARCHAR(255) NOT NULL,
+    "Field" VARCHAR(255) NOT NULL,
     "order" INTEGER NOT NULL DEFAULT 0,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,

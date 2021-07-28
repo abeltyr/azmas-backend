@@ -3,6 +3,7 @@ import Group from "./group";
 import GroupMember from "./groupMember";
 import Event from "./event";
 import Ticket from "./ticket";
+import File from "./file";
 
 export default {
   User,
@@ -10,4 +11,5 @@ export default {
   GroupMember,
   Event,
   Ticket,
+  File,
 } as const;
