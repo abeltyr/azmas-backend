@@ -11,6 +11,11 @@ const FetchAll = async (
     orderBy: {
       eventStartDate: args.filter.order,
     },
+    where: {
+      eventEndDate: {
+        gte: new Date(),
+      },
+    },
   });
 };
 

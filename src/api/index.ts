@@ -45,6 +45,9 @@ const schema = makeExecutableSchema({
       ...TicketResolver.Mutation,
       ...FileResolver.Mutation,
     },
+    Event: {
+      group: services.Event.Group,
+    },
     JSON: GraphQLJSON,
     DateTime: GraphQLDateTime,
     Upload: GraphQLUpload,
