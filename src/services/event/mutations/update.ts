@@ -9,6 +9,8 @@ const Update = async (
   req: any,
   prisma: PrismaClient
 ): Promise<ResolversTypes["Event"]> => {
+  args.data.eventStartDate = new Date(args.data.eventStartDate);
+  args.data.eventEndDate = new Date(args.data.eventEndDate);
   let update = await prisma.event.update({
     where: { id: args.id },
     data: {

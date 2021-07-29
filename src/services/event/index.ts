@@ -4,6 +4,7 @@ import Delete from "./mutations/delete";
 import FetchAll from "./queries/fetchAll";
 import FetchOne from "./queries/fetchOne";
 import Group from "./custom/group";
+import Tickets from "./custom/tickets";
 
 export default {
   FetchOne,
@@ -12,4 +13,5 @@ export default {
   Update,
   Delete,
   Group,
+  Tickets,
 };

@@ -2,6 +2,11 @@ const Event = /* GraphQL */ `
   extend type Query {
     event(id: ID!): Event
     events(filter: FilterInput!): [Event!]
+    monthlyevent(
+      filter: FilterInput!
+      startDate: String
+      endDate: String
+    ): [Event!]
   }
 
   extend type Mutation {
@@ -35,8 +40,8 @@ const Event = /* GraphQL */ `
     groupId: ID!
     title: String
     description: String
-    eventStartDate: DateTime!
-    eventEndDate: DateTime!
+    eventStartDate: String!
+    eventEndDate: String!
     category: String
     location: String
     price: Int!
@@ -47,8 +52,8 @@ const Event = /* GraphQL */ `
     groupId: ID!
     title: String
     description: String
-    eventStartDate: DateTime!
-    eventEndDate: DateTime!
+    eventStartDate: String!
+    eventEndDate: String!
     category: String
     location: String
     price: Int!
