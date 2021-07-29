@@ -1,11 +1,11 @@
 import { FileUpload } from "graphql-upload";
 import { File, MutationMultipleUploadArgs, User } from "../../../types/graphql";
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient, UploadFile } from "@prisma/client";
 
 const multipleUpload = async (
   args: MutationMultipleUploadArgs,
   prisma: PrismaClient,
-  uploadData: (fileData: [FileUpload], user: User) => Promise<File>
+  uploadData: (fileData: [FileUpload], user: User) => Promise<UploadFile>
 ): Promise<Partial<File>[]> => {
   // let user = await userModel().findById(args.userId);
   // if (!user) throw new Error();

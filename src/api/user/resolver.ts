@@ -1,6 +1,7 @@
 import {
   User,
-  MutationCreateUserArgs,
+  MutationSignUpArgs,
+  MutationLoginArgs,
   QueryUsersArgs,
   Resolver,
   MutationUpdateUserArgs,
@@ -33,13 +34,20 @@ const users: Resolver<Partial<User>[], {}, context, QueryUsersArgs> = async (
   return await services.User.FetchAll(args, prisma);
 };
 
-const createUser: Resolver<
-  Partial<User>,
-  {},
-  context,
-  MutationCreateUserArgs
-> = async (_, args, { req, prisma, utils, services }) => {
+const signUp: Resolver<Partial<User>, {}, context, MutationSignUpArgs> = async (
+  _,
+  args,
+  { req, prisma, utils, services }
+) => {
   return await services.User.Create(args, prisma);
+};
+
+const login: Resolver<Partial<User>, {}, context, MutationLoginArgs> = async (
+  _,
+  args,
+  { req, prisma, utils, services }
+) => {
+  return await services.User.Login(args, prisma);
 };
 
 const updateUser: Resolver<
@@ -59,7 +67,8 @@ const deleteUser: Resolver<boolean, {}, context, MutationDeleteUserArgs> =
 export default {
   Query: { user, currentUser, users },
   Mutation: {
-    createUser,
+    login,
+    signUp,
     deleteUser,
     updateUser,
   },

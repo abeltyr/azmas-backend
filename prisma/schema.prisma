@@ -42,7 +42,6 @@ model Group {
   ownerId      String        @db.Uuid
   title        String?       @db.VarChar(255)
   description  String?       @db.Text
-  //Todo: add the avatar and background
   public       Boolean       @default(true)
   activated    Boolean       @default(false)
   verified     Boolean       @default(false)
@@ -135,4 +134,36 @@ model UploadFileRelation {
   updatedAt  DateTime  @updatedAt
   deleted    Boolean   @default(false)
   deleteDate DateTime?
+}
+
+model UserPassword {
+  id           String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  userId       String   @db.Uuid
+  hash         String   @db.Text
+  order        Int      @default(0)
+  changeReason String?  @db.VarChar(255)
+  device       String   @db.Text
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model UserToken {
+  id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  userId    String   @db.Uuid
+  token     String   @db.Text
+  Endperiod DateTime
+  active    Boolean  @default(true)
+  device    String   @db.Text
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model ForgotenPassword {
+  id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  userId    String   @db.Uuid
+  code      String   @db.VarChar(255)
+  used      Boolean  @default(true)
+  device    String   @db.Text
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }

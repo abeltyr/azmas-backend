@@ -45,6 +45,9 @@ const schema = makeExecutableSchema({
       ...TicketResolver.Mutation,
       ...FileResolver.Mutation,
     },
+    User: {
+      avatar: services.User.Avatar,
+    },
     Event: {
       group: services.Event.Group,
     },

@@ -4,15 +4,6 @@ export const Repeatable = /* GraphQL */ `
   scalar Upload
   scalar Uploads
 
-  type Avatar {
-    id: ID!
-    name: String!
-    url: String!
-    size: Float!
-    avatar: String!
-    ext: String!
-  }
-
   input FilterInput {
     skip: Int = 0
     take: Int = 25

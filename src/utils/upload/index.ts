@@ -23,7 +23,7 @@ export const uploadData: (
   const { Location } = await upload(params);
 
   const prisma = new PrismaClient();
-  const uploadData = prisma.uploadFile.create({
+  const uploadData = await prisma.uploadFile.create({
     data: {
       name: file.filename,
       url: Location,

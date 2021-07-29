@@ -6,7 +6,8 @@ const User = /* GraphQL */ `
   }
 
   type Mutation {
-    createUser(data: CreateUserInput): User!
+    login(data: LoginInput): User
+    signUp(data: SignUpInput): User!
     updateUser(data: UpdateUserInput, id: ID!): User!
     deleteUser(id: ID!): Boolean!
   }
@@ -17,6 +18,7 @@ const User = /* GraphQL */ `
     phoneNumber: String!
     email: String!
     userName: String!
+    avatar: File
     bio: String
     birthDate: DateTime
     gender: String!
@@ -26,15 +28,12 @@ const User = /* GraphQL */ `
     facebook: String
     verified: Boolean
     activated: Boolean
-    # Groups  Group[]
-    # GroupMembers GroupMember[]
-    # events  Event[]
-    # tickets Ticket[]
+    token: String
     createdAt: DateTime
     updatedAt: DateTime
   }
 
-  input CreateUserInput {
+  input SignUpInput {
     fullName: String!
     phoneNumber: String!
     email: String!
@@ -46,6 +45,14 @@ const User = /* GraphQL */ `
     twitter: String
     telegram: String
     facebook: String
+    password: String!
+    device: String!
+  }
+
+  input LoginInput {
+    userName: String!
+    password: String!
+    device: String!
   }
 
   input UpdateUserInput {
