@@ -8,7 +8,11 @@ const User = /* GraphQL */ `
   type Mutation {
     login(data: LoginInput): User
     signUp(data: SignUpInput): User!
-    updateUser(data: UpdateUserInput, id: ID!): User!
+    personalDataUpdate(data: PersonalDataUpdateInput): Boolean!
+    accountDataUpdate(data: AccountDataUpdateInput): Boolean!
+    socailDataUpdate(data: SocailDataUpdateInput): Boolean!
+    securityDataUpdate(data: SecurityDataUpdateInput): User
+    profileUpdate(uploadFileId: ID!): Boolean!
     deleteUser(id: ID!): Boolean!
   }
 
@@ -55,18 +59,30 @@ const User = /* GraphQL */ `
     device: String!
   }
 
-  input UpdateUserInput {
+  input PersonalDataUpdateInput {
     fullName: String!
-    phoneNumber: String!
-    email: String!
     birthDate: String
-    userName: String!
     bio: String
     gender: String
+  }
+
+  input AccountDataUpdateInput {
+    email: String!
+    phoneNumber: String!
+    userName: String!
+  }
+
+  input SocailDataUpdateInput {
     instagram: String
     twitter: String
     telegram: String
     facebook: String
+  }
+
+  input SecurityDataUpdateInput {
+    oldPassword: String!
+    password: String!
+    device: String!
   }
 
   schema {

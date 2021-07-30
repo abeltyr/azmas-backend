@@ -5,11 +5,7 @@ import Jwt from "jsonwebtoken";
 
 const Create = async (
   args: MutationSignUpArgs,
-  prisma: PrismaClient<
-    Prisma.PrismaClientOptions,
-    never,
-    Prisma.RejectOnNotFound | Prisma.RejectPerOperation
-  >
+  prisma: PrismaClient
 ): Promise<Partial<User>> => {
   if (!/^[a-zA-Z\d]+$/.test(args.data.userName))
     throw new Error("The username can't have space or other values");

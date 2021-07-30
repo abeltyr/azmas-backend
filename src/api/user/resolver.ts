@@ -4,7 +4,11 @@ import {
   MutationLoginArgs,
   QueryUsersArgs,
   Resolver,
-  MutationUpdateUserArgs,
+  MutationPersonalDataUpdateArgs,
+  MutationAccountDataUpdateArgs,
+  MutationSocailDataUpdateArgs,
+  MutationSecurityDataUpdateArgs,
+  MutationProfileUpdateArgs,
   MutationDeleteUserArgs,
   QueryUserArgs,
 } from "types/graphql";
@@ -50,15 +54,50 @@ const login: Resolver<Partial<User>, {}, context, MutationLoginArgs> = async (
   return await services.User.Login(args, prisma);
 };
 
-const updateUser: Resolver<
+const personalDataUpdate: Resolver<
+  Boolean,
+  {},
+  context,
+  MutationPersonalDataUpdateArgs
+> = async (_, args, { req, prisma, utils, services }) => {
+  await utils.GetUser(req, prisma);
+  return await services.User.Personal(args, req, prisma);
+};
+const accountDataUpdate: Resolver<
+  Boolean,
+  {},
+  context,
+  MutationAccountDataUpdateArgs
+> = async (_, args, { req, prisma, utils, services }) => {
+  // await utils.GetUser(req, prisma);
+  return await services.User.Account(args, req, prisma);
+};
+const socailDataUpdate: Resolver<
+  Boolean,
+  {},
+  context,
+  MutationSocailDataUpdateArgs
+> = async (_, args, { req, prisma, utils, services }) => {
+  await utils.GetUser(req, prisma);
+  return await services.User.Socail(args, req, prisma);
+};
+const securityDataUpdate: Resolver<
   Partial<User>,
   {},
   context,
-  MutationUpdateUserArgs
+  MutationSecurityDataUpdateArgs
 > = async (_, args, { req, prisma, utils, services }) => {
-  return await services.User.Update(args, req, prisma);
+  await utils.GetUser(req, prisma);
+  return await services.User.Security(args, req, prisma);
 };
 
+const profileUpdate: Resolver<Boolean, {}, context, MutationProfileUpdateArgs> =
+  async (_, args, { req, prisma, utils, services }) => {
+    await utils.GetUser(req, prisma);
+    return await services.User.ProfileUpdate(args, req, prisma);
+  };
+
+// await utils.GetUser(req, prisma);
 const deleteUser: Resolver<boolean, {}, context, MutationDeleteUserArgs> =
   async (_, args, { req, prisma, utils, services }) => {
     return await services.User.Delete(args, req, prisma);
@@ -69,7 +108,11 @@ export default {
   Mutation: {
     login,
     signUp,
+    personalDataUpdate,
+    accountDataUpdate,
+    securityDataUpdate,
+    socailDataUpdate,
+    profileUpdate,
     deleteUser,
-    updateUser,
   },
 };

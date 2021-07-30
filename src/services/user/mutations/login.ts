@@ -5,11 +5,7 @@ import Jwt from "jsonwebtoken";
 
 const Login = async (
   args: MutationLoginArgs,
-  prisma: PrismaClient<
-    Prisma.PrismaClientOptions,
-    never,
-    Prisma.RejectOnNotFound | Prisma.RejectPerOperation
-  >
+  prisma: PrismaClient
 ): Promise<Partial<User>> => {
   let userName = args.data.userName;
   let password = args.data.password;
@@ -53,10 +49,7 @@ const Login = async (
   await prisma.userToken.updateMany({
     where: {
       userId: user.id,
-      device: {
-        contains: device,
-        in: device,
-      },
+      device: device,
     },
     data: { active: false },
   });

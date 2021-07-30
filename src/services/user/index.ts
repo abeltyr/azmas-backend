@@ -1,6 +1,10 @@
 import Create from "./mutations/create";
 import Login from "./mutations/login";
-import Update from "./mutations/update";
+import Personal from "./mutations/personal";
+import Account from "./mutations/account";
+import Socail from "./mutations/social";
+import Security from "./mutations/security";
+import ProfileUpdate from "./mutations/profile";
 import Delete from "./mutations/delete";
 import FetchAll from "./queries/fetchAll";
 import fetchCurrent from "./queries/fetchCurrent";
@@ -13,7 +17,11 @@ export default {
   FetchAll,
   Create,
   Login,
-  Update,
+  Personal,
+  Account,
+  Socail,
+  Security,
+  ProfileUpdate,
   Delete,
   Avatar,
 };

@@ -1,5 +1,6 @@
 import dotEnv from "dotenv";
 import findConfig from "find-config";
+import checkJwt from "../src/middleware";
 dotEnv.config({ path: findConfig(`.env`)! });
 import Sentry = require("@sentry/node");
 
@@ -35,6 +36,8 @@ const server = async () => {
   const apolloServer = new ApolloServer(api);
 
   await apolloServer.start();
+
+  app.use(path, (req, res, next) => checkJwt(req, res, next));
   apolloServer.applyMiddleware({ app, path });
 
   const HOSTNAME = process.env.HOSTNAME || "0.0.0.0";
