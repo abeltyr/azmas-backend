@@ -112,11 +112,13 @@ model UploadFile {
   id              String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   name            String    @db.VarChar(255)
   alternativeName String?   @db.VarChar(255)
+  directory       String?   @db.VarChar(255)
   ext             String?   @db.VarChar(255)
   url             String    @db.VarChar(255)
   previewUrl      String?   @db.VarChar(255)
   mime            String?   @db.VarChar(255)
   size            Float
+  userId          String?   @db.Uuid
   createdAt       DateTime  @default(now())
   updatedAt       DateTime  @updatedAt
   deleted         Boolean   @default(false)

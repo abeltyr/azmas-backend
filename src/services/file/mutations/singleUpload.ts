@@ -4,12 +4,18 @@ import { PrismaClient, UploadFile } from "@prisma/client";
 
 const singleUpload = async (
   args: MutationSingleUploadArgs,
-  prisma: PrismaClient,
-  uploadData: (fileData: FileUpload, user?: User) => Promise<UploadFile>
+  req: any,
+  uploadData: (
+    fileData: FileUpload,
+    user?: User,
+    directory?: String
+  ) => Promise<UploadFile>
 ): Promise<File> => {
-  // let user = await userModel().findById(args.userId);
-  // if (!user) throw new Error();
-  let createdFile: File = await uploadData(args.file);
+  let createdFile: File = await uploadData(
+    args.file,
+    req.req.user,
+    args.directory
+  );
 
   return createdFile;
 };

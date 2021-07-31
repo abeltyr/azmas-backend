@@ -14,6 +14,7 @@ const getFile: Resolver<Partial<File>, {}, context, QueryGetFileArgs> = async (
   args,
   { req, prisma, utils, services }
 ) => {
+  await utils.GetUser(req, prisma);
   return await services.File.fetchOne(args, prisma);
 };
 
@@ -23,6 +24,7 @@ const getMultipleFiles: Resolver<
   context,
   QueryGetMultipleFilesArgs
 > = async (_, args, { req, prisma, utils, services }) => {
+  await utils.GetUser(req, prisma);
   return await services.File.fetchMultiple(args, prisma);
 };
 
@@ -32,11 +34,13 @@ const singleUpload: Resolver<
   context,
   MutationSingleUploadArgs
 > = async (_, args, { req, prisma, utils, services }) => {
-  return await services.File.singleUpload(args, prisma, utils.uploadData);
+  await utils.GetUser(req, prisma);
+  return await services.File.singleUpload(args, req, utils.uploadData);
 };
 
 const removeUpload: Resolver<boolean, {}, context, MutationRemoveUploadArgs> =
   async (_, args, { req, prisma, utils, services }) => {
+    await utils.GetUser(req, prisma);
     return await services.File.removeUpload(args, prisma);
   };
 
@@ -46,6 +50,7 @@ const multipleUpload: Resolver<
   context,
   MutationMultipleUploadArgs
 > = async (_, args, { req, prisma, utils, services }) => {
+  await utils.GetUser(req, prisma);
   return await services.File.multipleUpload(args, prisma, utils.uploadData);
 };
 

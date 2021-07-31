@@ -51,9 +51,12 @@ const updateProfile = async (
           id: uploadFiles.fileId,
         },
       });
+      let bucket = process.env.Aws_Bucket_NAME;
+      if (previousFile.directory)
+        bucket = `${process.env.Aws_Bucket_NAME}/${previousFile.directory}`;
       const params: AWS.S3.DeleteObjectRequest = {
         Key: previousFile.name,
-        Bucket: process.env.Aws_Bucket_NAME,
+        Bucket: bucket,
       };
       await deleteData(params);
     } catch (e) {

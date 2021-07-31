@@ -4,9 +4,9 @@ const Upload = /* GraphQL */ `
     getMultipleFiles(filesIds: [ID]): [File!]!
   }
   extend type Mutation {
-    singleUpload(file: Upload!, userId: ID): File!
+    singleUpload(file: Upload!, directory: String): File!
     removeUpload(id: ID): Boolean
-    multipleUpload(files: [Uploads], userId: ID): [File!]!
+    multipleUpload(files: [Uploads]): [File!]!
   }
   type File {
     id: ID!
