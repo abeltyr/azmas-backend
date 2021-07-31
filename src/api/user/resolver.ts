@@ -27,6 +27,7 @@ const currentUser: Resolver<Partial<User>, {}, context> = async (
   args,
   { req, prisma, utils, services }
 ) => {
+  await utils.GetUser(req, prisma);
   return await services.User.fetchCurrent(req, prisma);
 };
 

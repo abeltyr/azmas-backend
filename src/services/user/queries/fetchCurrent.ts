@@ -5,10 +5,19 @@ const FetchCurrentOne = async (
   req: any,
   prisma: PrismaClient
 ): Promise<Partial<User>> => {
-  // let email = req.req.user.email.toLowerCase();
-  let email = "abeltyr@gmail.com";
-  let fetchedUser;
-  return fetchedUser;
+  let user = await prisma.user.findUnique({
+    where: {
+      id: req.req.user.id,
+    },
+  });
+  let tokenData = await prisma.userToken.findFirst({
+    where: {
+      userId: user.id,
+      active: true,
+    },
+  });
+
+  return { ...user, token: tokenData.token };
 };
 
 export default FetchCurrentOne;
