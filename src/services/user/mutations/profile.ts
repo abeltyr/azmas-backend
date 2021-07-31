@@ -4,7 +4,10 @@ import { MutationProfileUpdateArgs } from "../../../types/graphql";
 const updateProfile = async (
   args: MutationProfileUpdateArgs,
   req: any,
-  prisma: PrismaClient
+  prisma: PrismaClient,
+  deleteData: (
+    param: AWS.S3.DeleteObjectRequest
+  ) => Promise<AWS.S3.DeleteObjectOutput>
 ): Promise<Boolean> => {
   try {
     let userData = await prisma.user.findFirst({
@@ -42,6 +45,20 @@ const updateProfile = async (
         id: uploadFiles.id,
       },
     });
+    try {
+      let previousFile = await prisma.uploadFile.findFirst({
+        where: {
+          id: uploadFiles.fileId,
+        },
+      });
+      const params: AWS.S3.DeleteObjectRequest = {
+        Key: previousFile.name,
+        Bucket: process.env.Aws_Bucket_NAME,
+      };
+      await deleteData(params);
+    } catch (e) {
+      console.log(e);
+    }
     if (uploadFileRelation) return true;
   } catch (e) {
     throw new Error(e);

@@ -27,3 +27,17 @@ export const upload: (
     });
   });
 };
+
+export const deleteData: (
+  params: AWS.S3.DeleteObjectRequest
+) => Promise<AWS.S3.DeleteObjectOutput> = (params) => {
+  return new Promise((resolve, reject) => {
+    s3.deleteObject(params, function (err, data) {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(data);
+      }
+    });
+  });
+};

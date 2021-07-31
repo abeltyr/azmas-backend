@@ -94,7 +94,12 @@ const securityDataUpdate: Resolver<
 const profileUpdate: Resolver<Boolean, {}, context, MutationProfileUpdateArgs> =
   async (_, args, { req, prisma, utils, services }) => {
     await utils.GetUser(req, prisma);
-    return await services.User.ProfileUpdate(args, req, prisma);
+    return await services.User.ProfileUpdate(
+      args,
+      req,
+      prisma,
+      utils.space.deleteData
+    );
   };
 
 // await utils.GetUser(req, prisma);

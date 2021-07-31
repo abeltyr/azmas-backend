@@ -21,12 +21,15 @@ export const uploadData: (
     ACL: "public-read",
   };
   const { Location } = await upload(params);
-
+  const data = Location.split("fra1.");
+  let previewUrl;
+  if (data.length > 0) previewUrl = `${data[0]}fra1.cdn.${data[1]}`;
   const prisma = new PrismaClient();
   const uploadData = await prisma.uploadFile.create({
     data: {
       name: file.filename,
       url: Location,
+      previewUrl: previewUrl,
       size: fileSize / 1000,
       mime: file.mimetype,
       ext: `.${file.filename.split(".")[file.filename.split(".").length - 1]}`,
