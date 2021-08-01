@@ -6,7 +6,7 @@ import {
   QueryGetFileArgs,
   QueryGetMultipleFilesArgs,
   Resolver,
-} from "types/graphql";
+} from "../../types/graphql";
 import { context } from "types/service";
 
 const getFile: Resolver<Partial<File>, {}, context, QueryGetFileArgs> = async (

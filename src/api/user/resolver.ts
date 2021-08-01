@@ -11,7 +11,7 @@ import {
   MutationProfileUpdateArgs,
   MutationDeleteUserArgs,
   QueryUserArgs,
-} from "types/graphql";
+} from "../../types/graphql";
 import { context } from "../../types/service";
 
 const user: Resolver<Partial<User>, {}, context, QueryUserArgs> = async (

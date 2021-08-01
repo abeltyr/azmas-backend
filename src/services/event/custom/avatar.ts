@@ -1,3 +1,6 @@
+import { Event, File, Resolver } from "../../../types/graphql";
+import { context } from "../../../types/service";
+
 const userAvatar = async (parent, _, { req, prisma, utils, services }) => {
   let relation = await prisma.uploadFileRelation.findFirst({
     where: {

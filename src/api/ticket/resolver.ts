@@ -6,7 +6,7 @@ import {
   MutationUpdateTicketArgs,
   MutationDeleteTicketArgs,
   QueryTicketArgs,
-} from "types/graphql";
+} from "../../types/graphql";
 import { context } from "../../types/service";
 
 const ticket: Resolver<Partial<Ticket>, {}, context, QueryTicketArgs> = async (

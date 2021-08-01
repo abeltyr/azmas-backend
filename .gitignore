@@ -66,6 +66,5 @@ jspm_packages/
 
 # api
 dist
-src/types/graphql.ts
 .generated-ast.graphql
 export.sh

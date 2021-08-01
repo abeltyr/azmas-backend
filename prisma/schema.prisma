@@ -43,9 +43,10 @@ model Community {
   title            String?            @db.VarChar(255)
   description      String?            @db.Text
   public           Boolean            @default(true)
-  activated        Boolean            @default(false)
+  activated        Boolean            @default(true)
   verified         Boolean            @default(false)
   influencer       Boolean            @default(false)
+  artist           Boolean            @default(false)
   category         String?            @db.VarChar(255)
   createdAt        DateTime           @default(now())
   updatedAt        DateTime           @updatedAt

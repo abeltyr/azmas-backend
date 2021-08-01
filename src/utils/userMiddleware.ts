@@ -34,6 +34,7 @@ export const GetUser = async (req, prisma: PrismaClient) => {
     //   console.log("user is not verified or activated");
     //   throw new Error("user is not verified or activated");
     // }
+    req.req.user = finaluser;
     return finaluser;
   } catch (e) {
     throw new Error(e);

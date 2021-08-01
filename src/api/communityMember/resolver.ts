@@ -6,7 +6,7 @@ import {
   MutationUpdateCommunityMemberArgs,
   MutationRemoveCommunityMemberArgs,
   QueryCommunityMemberArgs,
-} from "types/graphql";
+} from "../../types/graphql";
 import { context } from "../../types/service";
 
 const communityMember: Resolver<

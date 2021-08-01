@@ -15,7 +15,6 @@ const Update = async (
       ...args.data,
     },
   });
-  if (update) return update;
-  throw new Error("the id given is invalided");
+  return update;
 };
 export default Update;

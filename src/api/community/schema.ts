@@ -2,11 +2,16 @@ const Community = /* GraphQL */ `
   extend type Query {
     community(id: ID!): Community
     communities(filter: FilterInput!): [Community!]
+    followingCommunities(filter: FilterInput!): [Community!]
   }
 
   extend type Mutation {
     createCommunity(data: CreateCommunityInput): Community!
     updateCommunity(data: UpdateCommunityInput, id: ID!): Community!
+    statusUpdate(id: ID!, influencer: Boolean, artist: Boolean): Community!
+    verifyCommunity(id: ID!): Community!
+    privateCommunity(id: ID!): Community!
+    deactivateCommunity(id: ID!): Boolean!
     deleteCommunity(id: ID!): Boolean!
   }
 
@@ -21,6 +26,7 @@ const Community = /* GraphQL */ `
     activated: Boolean
     verified: Boolean
     influencer: Boolean
+    artist: Boolean
     category: String
     # Todo: add the avatar and background
     # CommunityMembers CommunityMember[]
@@ -31,27 +37,19 @@ const Community = /* GraphQL */ `
   }
 
   input CreateCommunityInput {
-    communityName: String
-    ownerId: ID!
-    title: String
-    description: String
+    communityName: String!
+    title: String!
+    description: String!
     public: Boolean
-    activated: Boolean
-    verified: Boolean
-    influencer: Boolean
-    category: String
+    category: String!
   }
 
   input UpdateCommunityInput {
-    communityName: String
-    ownerId: ID!
-    title: String
-    description: String
+    communityName: String!
+    title: String!
+    description: String!
     public: Boolean
-    activated: Boolean
-    verified: Boolean
-    influencer: Boolean
-    category: String
+    category: String!
   }
 `;
 

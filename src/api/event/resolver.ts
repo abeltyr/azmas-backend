@@ -6,7 +6,7 @@ import {
   MutationUpdateEventArgs,
   MutationDeleteEventArgs,
   QueryEventArgs,
-} from "types/graphql";
+} from "../../types/graphql";
 import { context } from "../../types/service";
 
 const event: Resolver<Partial<Event>, {}, context, QueryEventArgs> = async (
