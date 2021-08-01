@@ -1,7 +1,7 @@
 import dotEnv from "dotenv";
 import findConfig from "find-config";
 import helmet from "helmet";
-import checkJwt from "../src/middleware";
+import checkJwt from "./middleware";
 dotEnv.config({ path: findConfig(`.env`)! });
 import Sentry = require("@sentry/node");
 
