@@ -10,11 +10,11 @@ import utils from "../utils";
 import User from "./user/schema";
 import UserResolver from "./user/resolver";
 
-import Group from "./group/schema";
-import GroupResolver from "./group/resolver";
+import community from "./community/schema";
+import communityResolver from "./community/resolver";
 
-import GroupMember from "./groupMember/schema";
-import GroupMemberResolver from "./groupMember/resolver";
+import communityMember from "./communityMember/schema";
+import communityMemberResolver from "./communityMember/resolver";
 
 import Event from "./event/schema";
 import EventResolver from "./event/resolver";
@@ -27,20 +27,20 @@ import FileResolver from "./file/resolver";
 
 const prisma = new PrismaClient();
 const schema = makeExecutableSchema({
-  typeDefs: [Repeatable, User, Group, GroupMember, Event, Ticket, File],
+  typeDefs: [Repeatable, User, community, communityMember, Event, Ticket, File],
   resolvers: {
     Query: {
       ...UserResolver.Query,
-      ...GroupResolver.Query,
-      ...GroupMemberResolver.Query,
+      ...communityResolver.Query,
+      ...communityMemberResolver.Query,
       ...EventResolver.Query,
       ...TicketResolver.Query,
       ...FileResolver.Query,
     },
     Mutation: {
       ...UserResolver.Mutation,
-      ...GroupResolver.Mutation,
-      ...GroupMemberResolver.Mutation,
+      ...communityResolver.Mutation,
+      ...communityMemberResolver.Mutation,
       ...EventResolver.Mutation,
       ...TicketResolver.Mutation,
       ...FileResolver.Mutation,
@@ -49,7 +49,7 @@ const schema = makeExecutableSchema({
       avatar: services.User.Avatar,
     },
     Event: {
-      group: services.Event.Group,
+      community: services.Event.Community,
     },
     JSON: GraphQLJSON,
     DateTime: GraphQLDateTime,

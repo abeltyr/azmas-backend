@@ -105,7 +105,7 @@ const User = /* GraphQL */ `
 
   enum TablesName {
     User
-    Group
+    Community
     Event
   }
 `;

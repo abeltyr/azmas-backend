@@ -19,8 +19,8 @@ const Event = /* GraphQL */ `
     id: ID!
     user: User
     creatorId: ID!
-    group: Group
-    groupId: ID!
+    community: Community
+    communityId: ID!
     title: String
     description: String
     # //Todo: add the array of image
@@ -37,7 +37,7 @@ const Event = /* GraphQL */ `
 
   input CreateEventInput {
     creatorId: ID!
-    groupId: ID!
+    communityId: ID!
     title: String
     description: String
     eventStartDate: String!
@@ -49,7 +49,7 @@ const Event = /* GraphQL */ `
 
   input UpdateEventInput {
     creatorId: ID!
-    groupId: ID!
+    communityId: ID!
     title: String
     description: String
     eventStartDate: String!

@@ -3,7 +3,7 @@ import Update from "./mutations/update";
 import Delete from "./mutations/delete";
 import FetchAll from "./queries/fetchAll";
 import FetchOne from "./queries/fetchOne";
-import Group from "./custom/group";
+import Community from "./custom/community";
 import Tickets from "./custom/tickets";
 
 export default {
@@ -12,6 +12,6 @@ export default {
   Create,
   Update,
   Delete,
-  Group,
+  Community,
   Tickets,
 };

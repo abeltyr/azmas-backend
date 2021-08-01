@@ -14,8 +14,8 @@ const Ticket = /* GraphQL */ `
     id: ID!
     user: User
     userId: ID!
-    group: Group
-    groupId: ID!
+    community: Community
+    communityId: ID!
     event: Event
     eventId: ID!
     price: Float!

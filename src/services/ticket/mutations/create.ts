@@ -20,7 +20,7 @@ const Create = async (
   const create = await prisma.ticket.create({
     data: {
       ...args.data,
-      groupId: event.groupId,
+      communityId: event.communityId,
     },
   });
   return create;
