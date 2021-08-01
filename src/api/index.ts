@@ -50,6 +50,8 @@ const schema = makeExecutableSchema({
     },
     Event: {
       community: services.Event.Community,
+      tickets: services.Event.Tickets,
+      image: services.Event.EventImage,
     },
     JSON: GraphQLJSON,
     DateTime: GraphQLDateTime,

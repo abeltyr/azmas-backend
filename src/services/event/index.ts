@@ -5,6 +5,7 @@ import FetchAll from "./queries/fetchAll";
 import FetchOne from "./queries/fetchOne";
 import Community from "./custom/community";
 import Tickets from "./custom/tickets";
+import EventImage from "./custom/image";
 
 export default {
   FetchOne,
@@ -13,5 +14,6 @@ export default {
   Update,
   Delete,
   Community,
+  EventImage,
   Tickets,
 };

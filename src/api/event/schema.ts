@@ -23,14 +23,14 @@ const Event = /* GraphQL */ `
     communityId: ID!
     title: String
     description: String
-    # //Todo: add the array of image
+    image: File
     eventStartDate: DateTime
     eventEndDate: DateTime
     category: String
     location: String
     price: Float
     horizontal: Boolean
-    # tickets        Ticket[]
+    tickets: [Ticket]
     createdAt: DateTime
     updatedAt: DateTime
   }

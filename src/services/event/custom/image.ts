@@ -1,10 +1,7 @@
-import { Event, File, Resolver } from "../../../types/graphql";
-import { context } from "../../../types/service";
-
-const userAvatar = async (parent, _, { req, prisma, utils, services }) => {
+const EventImage = async (parent, _, { req, prisma, utils, services }) => {
   let relation = await prisma.uploadFileRelation.findFirst({
     where: {
-      tableType: "User",
+      tableType: "Event",
       tableId: parent.id,
     },
   });
@@ -17,10 +14,10 @@ const userAvatar = async (parent, _, { req, prisma, utils, services }) => {
     if (defaultFile) {
       await prisma.uploadFileRelation.create({
         data: {
-          tableType: "User",
+          tableType: "Event",
           tableId: parent.id,
           fileId: defaultFile.id,
-          Field: "avatar",
+          Field: "image",
         },
       });
       return defaultFile;
@@ -33,4 +30,4 @@ const userAvatar = async (parent, _, { req, prisma, utils, services }) => {
   });
 };
 
-export default userAvatar;
+export default EventImage;
