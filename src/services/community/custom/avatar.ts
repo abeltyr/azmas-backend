@@ -17,7 +17,7 @@ const CommunityImage = async (parent, _, { req, prisma, utils, services }) => {
           tableType: "Community",
           tableId: parent.id,
           fileId: defaultFile.id,
-          Field: "image",
+          Field: "avatar",
         },
       });
       return defaultFile;

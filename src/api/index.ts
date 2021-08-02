@@ -53,6 +53,10 @@ const schema = makeExecutableSchema({
       tickets: services.Event.Tickets,
       image: services.Event.EventImage,
     },
+    Community: {
+      avatar: services.Community.Avatar,
+      background: services.Community.Background,
+    },
     JSON: GraphQLJSON,
     DateTime: GraphQLDateTime,
     Upload: GraphQLUpload,

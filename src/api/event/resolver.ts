@@ -46,8 +46,8 @@ const createEvent: Resolver<
   context,
   MutationCreateEventArgs
 > = async (_, args, { req, prisma, utils, services }) => {
-  await utils.GetUser(req, prisma);
-  return await services.Event.Create(args, prisma);
+  // await utils.GetUser(req, prisma);
+  return await services.Event.Create(args, req, prisma);
 };
 
 const updateEvent: Resolver<

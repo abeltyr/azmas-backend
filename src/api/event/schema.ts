@@ -36,26 +36,24 @@ const Event = /* GraphQL */ `
   }
 
   input CreateEventInput {
-    creatorId: ID!
     communityId: ID!
-    title: String
-    description: String
+    title: String!
+    description: String!
     eventStartDate: String!
     eventEndDate: String!
-    category: String
-    location: String
+    category: String!
+    location: String!
     price: Int!
   }
 
   input UpdateEventInput {
-    creatorId: ID!
     communityId: ID!
-    title: String
-    description: String
+    title: String!
+    description: String!
     eventStartDate: String!
     eventEndDate: String!
-    category: String
-    location: String
+    category: String!
+    location: String!
     price: Int!
   }
 `;

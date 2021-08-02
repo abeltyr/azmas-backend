@@ -18,6 +18,9 @@ const Community = /* GraphQL */ `
   type Community {
     id: ID!
     communityName: String!
+    avatar: File
+    background: File
+    image: File
     ownerId: ID!
     title: String
     description: String

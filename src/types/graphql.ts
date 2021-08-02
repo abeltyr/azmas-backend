@@ -83,14 +83,13 @@ export type CreateCommunityMemberInput = {
 };
 
 export type CreateEventInput = {
-  creatorId: Scalars['ID'];
   communityId: Scalars['ID'];
-  title?: Maybe<Scalars['String']>;
-  description?: Maybe<Scalars['String']>;
+  title: Scalars['String'];
+  description: Scalars['String'];
   eventStartDate: Scalars['String'];
   eventEndDate: Scalars['String'];
-  category?: Maybe<Scalars['String']>;
-  location?: Maybe<Scalars['String']>;
+  category: Scalars['String'];
+  location: Scalars['String'];
   price: Scalars['Int'];
 };
 
@@ -503,14 +502,13 @@ export type UpdateCommunityMemberInput = {
 };
 
 export type UpdateEventInput = {
-  creatorId: Scalars['ID'];
   communityId: Scalars['ID'];
-  title?: Maybe<Scalars['String']>;
-  description?: Maybe<Scalars['String']>;
+  title: Scalars['String'];
+  description: Scalars['String'];
   eventStartDate: Scalars['String'];
   eventEndDate: Scalars['String'];
-  category?: Maybe<Scalars['String']>;
-  location?: Maybe<Scalars['String']>;
+  category: Scalars['String'];
+  location: Scalars['String'];
   price: Scalars['Int'];
 };
 
