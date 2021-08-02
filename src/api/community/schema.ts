@@ -8,17 +8,16 @@ const Community = /* GraphQL */ `
   extend type Mutation {
     createCommunity(data: CreateCommunityInput): Community!
     updateCommunity(data: UpdateCommunityInput, id: ID!): Community!
-    statusUpdate(id: ID!, influencer: Boolean, artist: Boolean): Community!
-    verifyCommunity(id: ID!): Community!
-    privateCommunity(id: ID!): Community!
-    deactivateCommunity(id: ID!): Boolean!
+    statusUpdate(id: ID!, status: CommunityStatus!): Community!
+    verifyCommunity(id: ID!, verified: Boolean): Community!
+    privateCommunity(id: ID!, public: Boolean): Community!
+    deactivateCommunity(id: ID!, activated: Boolean): Boolean!
     deleteCommunity(id: ID!): Boolean!
   }
 
   type Community {
     id: ID!
     communityName: String!
-    user: User!
     ownerId: ID!
     title: String
     description: String
@@ -28,10 +27,6 @@ const Community = /* GraphQL */ `
     influencer: Boolean
     artist: Boolean
     category: String
-    # Todo: add the avatar and background
-    # CommunityMembers CommunityMember[]
-    # events       Event[]
-    # tickets      Ticket[]
     createdAt: DateTime
     updatedAt: DateTime
   }
@@ -50,6 +45,10 @@ const Community = /* GraphQL */ `
     description: String!
     public: Boolean
     category: String!
+  }
+  enum CommunityStatus {
+    Artist
+    Influencer
   }
 `;
 

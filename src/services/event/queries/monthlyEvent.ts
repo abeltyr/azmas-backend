@@ -1,8 +1,8 @@
-import { Event, QueryMonthlyeventArgs } from "../../../types/graphql";
+import { Event, QueryMonthlyEventArgs } from "../../../types/graphql";
 import { PrismaClient } from "@prisma/client";
 
-const monthlyEvent = async (
-  args: QueryMonthlyeventArgs,
+const MonthlyEvent = async (
+  args: QueryMonthlyEventArgs,
   prisma: PrismaClient
 ): Promise<Partial<Event>[]> => {
   return await prisma.event.findMany({
@@ -20,4 +20,4 @@ const monthlyEvent = async (
   });
 };
 
-export default { monthlyEvent };
+export default MonthlyEvent;

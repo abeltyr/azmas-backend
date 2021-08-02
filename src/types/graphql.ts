@@ -36,7 +36,6 @@ export type Community = {
   __typename?: 'Community';
   id: Scalars['ID'];
   communityName: Scalars['String'];
-  user: User;
   ownerId: Scalars['ID'];
   title?: Maybe<Scalars['String']>;
   description?: Maybe<Scalars['String']>;
@@ -62,6 +61,11 @@ export type CommunityMember = {
   createdAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
 };
+
+export enum CommunityStatus {
+  Artist = 'Artist',
+  Influencer = 'Influencer'
+}
 
 export type CreateCommunityInput = {
   communityName: Scalars['String'];
@@ -217,6 +221,7 @@ export type MutationCreateTicketArgs = {
 
 export type MutationDeactivateCommunityArgs = {
   id: Scalars['ID'];
+  activated?: Maybe<Scalars['Boolean']>;
 };
 
 
@@ -257,6 +262,7 @@ export type MutationPersonalDataUpdateArgs = {
 
 export type MutationPrivateCommunityArgs = {
   id: Scalars['ID'];
+  public?: Maybe<Scalars['Boolean']>;
 };
 
 
@@ -298,8 +304,7 @@ export type MutationSocailDataUpdateArgs = {
 
 export type MutationStatusUpdateArgs = {
   id: Scalars['ID'];
-  influencer?: Maybe<Scalars['Boolean']>;
-  artist?: Maybe<Scalars['Boolean']>;
+  status: CommunityStatus;
 };
 
 
@@ -329,6 +334,7 @@ export type MutationUpdateTicketArgs = {
 
 export type MutationVerifyCommunityArgs = {
   id: Scalars['ID'];
+  verified?: Maybe<Scalars['Boolean']>;
 };
 
 export type PersonalDataUpdateInput = {
@@ -350,7 +356,7 @@ export type Query = {
   followingCommunities?: Maybe<Array<Community>>;
   getFile: File;
   getMultipleFiles: Array<File>;
-  monthlyevent?: Maybe<Array<Event>>;
+  monthlyEvent?: Maybe<Array<Event>>;
   ticket?: Maybe<Ticket>;
   tickets?: Maybe<Array<Ticket>>;
   user?: Maybe<User>;
@@ -404,7 +410,7 @@ export type QueryGetMultipleFilesArgs = {
 };
 
 
-export type QueryMonthlyeventArgs = {
+export type QueryMonthlyEventArgs = {
   filter: FilterInput;
   startDate?: Maybe<Scalars['String']>;
   endDate?: Maybe<Scalars['String']>;
@@ -630,6 +636,7 @@ export type ResolversTypes = ResolversObject<{
   ID: ResolverTypeWrapper<Partial<Scalars['ID']>>;
   Boolean: ResolverTypeWrapper<Partial<Scalars['Boolean']>>;
   CommunityMember: ResolverTypeWrapper<Partial<CommunityMember>>;
+  CommunityStatus: ResolverTypeWrapper<Partial<CommunityStatus>>;
   CreateCommunityInput: ResolverTypeWrapper<Partial<CreateCommunityInput>>;
   CreateCommunityMemberInput: ResolverTypeWrapper<Partial<CreateCommunityMemberInput>>;
   CreateEventInput: ResolverTypeWrapper<Partial<CreateEventInput>>;
@@ -701,7 +708,6 @@ export type ResolversParentTypes = ResolversObject<{
 export type CommunityResolvers<ContextType = context, ParentType extends ResolversParentTypes['Community'] = ResolversParentTypes['Community']> = ResolversObject<{
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   communityName?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  user?: Resolver<ResolversTypes['User'], ParentType, ContextType>;
   ownerId?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   title?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   description?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
@@ -790,7 +796,7 @@ export type MutationResolvers<ContextType = context, ParentType extends Resolver
   signUp?: Resolver<ResolversTypes['User'], ParentType, ContextType, RequireFields<MutationSignUpArgs, never>>;
   singleUpload?: Resolver<ResolversTypes['File'], ParentType, ContextType, RequireFields<MutationSingleUploadArgs, 'file'>>;
   socailDataUpdate?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationSocailDataUpdateArgs, never>>;
-  statusUpdate?: Resolver<ResolversTypes['Community'], ParentType, ContextType, RequireFields<MutationStatusUpdateArgs, 'id'>>;
+  statusUpdate?: Resolver<ResolversTypes['Community'], ParentType, ContextType, RequireFields<MutationStatusUpdateArgs, 'id' | 'status'>>;
   updateCommunity?: Resolver<ResolversTypes['Community'], ParentType, ContextType, RequireFields<MutationUpdateCommunityArgs, 'id'>>;
   updateCommunityMember?: Resolver<ResolversTypes['CommunityMember'], ParentType, ContextType, RequireFields<MutationUpdateCommunityMemberArgs, 'id'>>;
   updateEvent?: Resolver<ResolversTypes['Event'], ParentType, ContextType, RequireFields<MutationUpdateEventArgs, 'id'>>;
@@ -809,7 +815,7 @@ export type QueryResolvers<ContextType = context, ParentType extends ResolversPa
   followingCommunities?: Resolver<Maybe<Array<ResolversTypes['Community']>>, ParentType, ContextType, RequireFields<QueryFollowingCommunitiesArgs, 'filter'>>;
   getFile?: Resolver<ResolversTypes['File'], ParentType, ContextType, RequireFields<QueryGetFileArgs, 'fileId'>>;
   getMultipleFiles?: Resolver<Array<ResolversTypes['File']>, ParentType, ContextType, RequireFields<QueryGetMultipleFilesArgs, never>>;
-  monthlyevent?: Resolver<Maybe<Array<ResolversTypes['Event']>>, ParentType, ContextType, RequireFields<QueryMonthlyeventArgs, 'filter'>>;
+  monthlyEvent?: Resolver<Maybe<Array<ResolversTypes['Event']>>, ParentType, ContextType, RequireFields<QueryMonthlyEventArgs, 'filter'>>;
   ticket?: Resolver<Maybe<ResolversTypes['Ticket']>, ParentType, ContextType, RequireFields<QueryTicketArgs, 'id'>>;
   tickets?: Resolver<Maybe<Array<ResolversTypes['Ticket']>>, ParentType, ContextType, RequireFields<QueryTicketsArgs, 'filter' | 'eventId'>>;
   user?: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType, RequireFields<QueryUserArgs, 'id'>>;

@@ -34,8 +34,7 @@ const followingCommunities: Resolver<
   context,
   QueryFollowingCommunitiesArgs
 > = async (_, args, { req, prisma, utils, services }) => {
-  //TODO: remove
-  // await utils.GetUser(req, prisma);
+  await utils.GetUser(req, prisma);
   return await services.Community.Following(args, req, prisma);
 };
 
@@ -45,8 +44,7 @@ const createCommunity: Resolver<
   context,
   MutationCreateCommunityArgs
 > = async (_, args, { req, prisma, utils, services }) => {
-  //TODO: remove
-  // await utils.GetUser(req, prisma);
+  await utils.GetUser(req, prisma);
   return await services.Community.Create(args, req, prisma);
 };
 
@@ -56,6 +54,7 @@ const updateCommunity: Resolver<
   context,
   MutationUpdateCommunityArgs
 > = async (_, args, { req, prisma, utils, services }) => {
+  await utils.GetUser(req, prisma);
   return await services.Community.Update(args, req, prisma);
 };
 
@@ -65,6 +64,7 @@ const statusUpdate: Resolver<
   context,
   MutationUpdateCommunityArgs
 > = async (_, args, { req, prisma, utils, services }) => {
+  await utils.GetUser(req, prisma);
   return await services.Community.Update(args, req, prisma);
 };
 
@@ -74,7 +74,8 @@ const verifyCommunity: Resolver<
   context,
   MutationUpdateCommunityArgs
 > = async (_, args, { req, prisma, utils, services }) => {
-  return await services.Community.Update(args, req, prisma);
+  await utils.GetUser(req, prisma);
+  return await services.Community.Verify(args, req, prisma);
 };
 
 const privateCommunity: Resolver<
@@ -83,16 +84,18 @@ const privateCommunity: Resolver<
   context,
   MutationUpdateCommunityArgs
 > = async (_, args, { req, prisma, utils, services }) => {
-  return await services.Community.Update(args, req, prisma);
+  await utils.GetUser(req, prisma);
+  return await services.Community.Private(args, req, prisma);
 };
 
 const deactivateCommunity: Resolver<
-  boolean,
+  Boolean,
   {},
   context,
   MutationDeleteCommunityArgs
 > = async (_, args, { req, prisma, utils, services }) => {
-  return await services.Community.Delete(args, req, prisma);
+  await utils.GetUser(req, prisma);
+  return await services.Community.Deactivate(args, req, prisma);
 };
 
 const deleteCommunity: Resolver<
@@ -101,6 +104,7 @@ const deleteCommunity: Resolver<
   context,
   MutationDeleteCommunityArgs
 > = async (_, args, { req, prisma, utils, services }) => {
+  await utils.GetUser(req, prisma);
   return await services.Community.Delete(args, req, prisma);
 };
 

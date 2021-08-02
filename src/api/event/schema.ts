@@ -2,7 +2,7 @@ const Event = /* GraphQL */ `
   extend type Query {
     event(id: ID!): Event
     events(filter: FilterInput!): [Event!]
-    monthlyevent(
+    monthlyEvent(
       filter: FilterInput!
       startDate: String
       endDate: String

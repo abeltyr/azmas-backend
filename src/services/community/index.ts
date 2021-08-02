@@ -1,5 +1,8 @@
 import Create from "./mutations/create";
 import Update from "./mutations/update";
+import Verify from "./mutations/verify";
+import Private from "./mutations/private";
+import Deactivate from "./mutations/deactivate";
 import Delete from "./mutations/delete";
 import FetchAll from "./queries/fetchAll";
 import Following from "./queries/following";
@@ -11,5 +14,8 @@ export default {
   Following,
   Create,
   Update,
+  Verify,
+  Private,
+  Deactivate,
   Delete,
 };
